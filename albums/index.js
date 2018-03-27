@@ -8,7 +8,7 @@ import Header from './src/components/header';
 // statement and just place the parenthesis. This means "fat arrow returns
 // what's inside of the parenthesis"
 const App = () => (
-  <Header />
+  <Header headerText={'Albums'} />
 );
 
 // Render it to the device
