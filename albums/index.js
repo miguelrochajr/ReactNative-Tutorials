@@ -9,7 +9,8 @@ import AlbumList from './src/components/AlbumList';
 // statement and just place the parenthesis. This means "fat arrow returns
 // what's inside of the parenthesis"
 const App = () => (
-  <View>
+  // See S8L48. The teacher said it was needed but mine worked fine without it
+  <View style={{ flex: 1 }}>
     <Header headerText={'Albums'} />
     <AlbumList />
   </View>
