@@ -1,15 +1,15 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Linking } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
-
+import Button from './Button';
 
 /* The destructuring props in the function definition is being used because all
 of the references on the props argument is going to album. Thus, our code gets
 a little more clean.
 */
 const AlbumDetail = ({ album }) => {
-  const { title, artist, thumbnail_image, image } = album; // optional refactor
+  const { title, artist, thumbnail_image, image, url } = album; // optional refactor
   const {
       thumbnailStyle,
       headerContentStyle,
@@ -32,11 +32,18 @@ const AlbumDetail = ({ album }) => {
           <Text>{artist}</Text>
         </View>
       </CardSection>
+
       <CardSection>
         <Image
           style={imageStyle}
           source={{ uri: image }}
         />
+      </CardSection>
+
+      <CardSection>
+        <Button btnPressed={() => Linking.openURL(url)}>
+          Buy now!
+        </Button>
       </CardSection>
     </Card>
   );
