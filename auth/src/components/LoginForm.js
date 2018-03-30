@@ -6,23 +6,7 @@ import { Button, Card, CardSection, Input, Spinner } from './common';
 class LoginForm extends Component {
   state = { email: '', password: '', error: '', loading: false };
 
-  onLoginFail() {
-    this.setState({
-      error: 'Authentication Failed',
-      loading: false
-    });
-  }
-
-  onLoginSuccess() {
-    this.setState({
-      email: '',
-      password: '',
-      loading: false,
-      error: ''
-    });
-  }
-
-  OnButtonPress() {
+  onButtonPress() {
     const { email, password } = this.state;
 
     this.setState({ error: '', loading: true });
@@ -36,13 +20,27 @@ class LoginForm extends Component {
       });
   }
 
+  onLoginFail() {
+    this.setState({ error: 'Authentication Failed', loading: false });
+  }
+
+  onLoginSuccess() {
+    this.setState({
+      email: '',
+      password: '',
+      loading: false,
+      error: ''
+    });
+  }
+
   renderButton() {
     if (this.state.loading) {
       return <Spinner size="small" />;
     }
+
     return (
-      <Button onPress={this.OnButtonPress.bind(this)}>
-        LOG IN
+      <Button onPress={this.onButtonPress.bind(this)}>
+        Log in
       </Button>
     );
   }
@@ -53,7 +51,7 @@ class LoginForm extends Component {
         <CardSection>
           <Input
             placeholder="user@gmail.com"
-            label="Email: "
+            label="Email"
             value={this.state.email}
             onChangeText={email => this.setState({ email })}
           />
@@ -63,7 +61,7 @@ class LoginForm extends Component {
           <Input
             secureTextEntry
             placeholder="password"
-            label="Password: "
+            label="Password"
             value={this.state.password}
             onChangeText={password => this.setState({ password })}
           />
