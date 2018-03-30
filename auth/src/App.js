@@ -6,19 +6,24 @@ import LoginForm from './components/LoginForm';
 
 
 class App extends Component {
-  state = { loggedIn: null };
 
-  componentWillMount() {
-    console.log('componentWillMount!!');
-    firebase.initializeApp({
+  constructor() {
+    super();
+    const config = {
       apiKey: 'AIzaSyAHZz9hsb-lSiePBkyM589Qt755IiEWtvY',
       authDomain: 'authentication-b5e97.firebaseapp.com',
       databaseURL: 'https://authentication-b5e97.firebaseio.com',
       projectId: 'authentication-b5e97',
       storageBucket: 'authentication-b5e97.appspot.com',
       messagingSenderId: '53031703058'
-    });
+    };
+    firebase.initializeApp(config);
+  }
 
+  state = { loggedIn: null };
+
+  // initialize firebase
+  componentWillMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ loggedIn: true });
@@ -35,7 +40,7 @@ class App extends Component {
       case true:
         return (
           <CardSection>
-            <Button>
+            <Button onPress={() => firebase.auth().signOut()}>
               Log Out
             </Button>
           </CardSection>
