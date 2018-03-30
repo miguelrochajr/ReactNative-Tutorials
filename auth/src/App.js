@@ -3,20 +3,14 @@ import { View } from 'react-native';
 import firebase from 'firebase';
 import { Header, Button, Spinner, CardSection } from './components/common';
 import LoginForm from './components/LoginForm';
+import firebaseConfig from './config/firebaseConfig';
 
 
 class App extends Component {
 
   constructor() {
     super();
-    const config = {
-      apiKey: 'AIzaSyAHZz9hsb-lSiePBkyM589Qt755IiEWtvY',
-      authDomain: 'authentication-b5e97.firebaseapp.com',
-      databaseURL: 'https://authentication-b5e97.firebaseio.com',
-      projectId: 'authentication-b5e97',
-      storageBucket: 'authentication-b5e97.appspot.com',
-      messagingSenderId: '53031703058'
-    };
+    const config = firebaseConfig; // my firebase credentials object
     firebase.initializeApp(config);
   }
 
