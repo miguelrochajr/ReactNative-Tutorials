@@ -53,4 +53,4 @@ buck-out/
 */fastlane/screenshots
 
 # Local config files
-*firebaseConfig
+*firebaseConfig.js
