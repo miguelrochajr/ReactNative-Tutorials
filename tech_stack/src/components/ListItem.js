@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { 
+        Text, TouchableWithoutFeedback, View, LayoutAnimation
+} from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from './common';
 import * as actions from '../actions';
 
 class ListItem extends Component {
 
+    componentWillUpdate() {
+        LayoutAnimation.spring();
+    }
+
     renderDescription() {
-        const { library, selectedLibraryId } = this.props;
+        const { library, expanded } = this.props;
         console.log(this.props);
         
 
-        if (library.id === selectedLibraryId) {
+        if (expanded) {
             return (
-                <Text>{library.description}</Text>
+                <CardSection>
+                    <Text style={{ flex: 1, paddingLeft: 10, paddingRight: 10 }}>
+                        {library.description}
+                    </Text>
+                </CardSection>
             );
         }
     }
@@ -46,14 +56,17 @@ const styles = {
     }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     /**
      the selectLibraryId comes from the reducer. When we bind the reducer
      SelectionReducer, we are saying that our class now have the state given
      in. In this case, selectedLibraryId. Please refere to file reducers/index.js
      and look for the "selectedLibraryId: SelectionReducer"
      */
-    return { selectedLibraryId: state.selectedLibraryId };
+    const expanded = (state.selectedLibraryId === ownProps.library.id);
+
+    // return { expanded: expanded }; // same thing
+    return { expanded };
 };
 
 /* 
