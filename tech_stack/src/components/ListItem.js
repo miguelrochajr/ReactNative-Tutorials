@@ -6,6 +6,18 @@ import * as actions from '../actions';
 
 class ListItem extends Component {
 
+    renderDescription() {
+        const { library, selectedLibraryId } = this.props;
+        console.log(this.props);
+        
+
+        if (library.id === selectedLibraryId) {
+            return (
+                <Text>{library.description}</Text>
+            );
+        }
+    }
+
     render() {
         const { titleStyle } = styles;
         const { id, title } = this.props.library;
@@ -20,6 +32,7 @@ class ListItem extends Component {
                             {title}
                         </Text>
                     </CardSection>
+                    {this.renderDescription()}
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -33,6 +46,16 @@ const styles = {
     }
 };
 
+const mapStateToProps = state => {
+    /**
+     the selectLibraryId comes from the reducer. When we bind the reducer
+     SelectionReducer, we are saying that our class now have the state given
+     in. In this case, selectedLibraryId. Please refere to file reducers/index.js
+     and look for the "selectedLibraryId: SelectionReducer"
+     */
+    return { selectedLibraryId: state.selectedLibraryId };
+};
+
 /* 
     - The first argument is the mapStateToProps function. Sice we do not one,
     we shall pass null.  It is also passed to the Store component
@@ -42,4 +65,4 @@ const styles = {
     to access these actions on our componnet through props.
 */
 // export default ListItem;
-export default connect(null, actions)(ListItem);
+export default connect(mapStateToProps, actions)(ListItem);

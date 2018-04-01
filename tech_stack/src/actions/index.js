@@ -3,6 +3,7 @@
 // producers to update the data through reducers
 //  The action is wrapped by a function, which is the actionCreator
 export const selectLibrary = (libraryId) => {
+    console.log(libraryId);
     return {
         type: 'select_library',
         payload: libraryId
