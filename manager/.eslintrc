@@ -2,5 +2,11 @@
     "extends": "rallycoding",
     "rules": {
         "arrow-body-style": 0
+    },    
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module"
     }
 }
