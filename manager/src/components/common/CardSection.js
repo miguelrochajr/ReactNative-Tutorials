@@ -3,7 +3,8 @@ import { View } from 'react-native';
 
 const CardSection = (props) => {
   return (
-    <View style={styles.containerStyle}>
+    // The right most style will override the one on the left
+    <View style={[styles.containerStyle, props.style]}>
       {props.children}
     </View>
   );
