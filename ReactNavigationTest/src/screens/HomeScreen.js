@@ -1,19 +1,11 @@
 import React, { Component} from 'react';
 import { View, Text, Button, Image, Platform } from 'react-native';
-
-class LogoTitle extends Component {
-    render() {
-        return (
-          <Image
-            source={require('../images/spiro.png')}
-            style={{ width: 30, height: 30, marginLeft: Platform.OS === 'ios' ? 0: 10 }}
-          />
-        );
-    }
-}
+import LogoTitle from '../components/LogoTitle';
 
 class HomeScreen extends Component {
     static navigationOptions = ({ navigation }) => {
+        const params = navigation.state.params || {};
+
         return {
             // title: 'Home',
             headerTitle: <LogoTitle />,
@@ -22,6 +14,13 @@ class HomeScreen extends Component {
                     onPress={navigation.getParam('increaseCount')}
                     title="+1"
                     color="#fff"
+                />
+            ),
+            headerLeft: (
+                <Button 
+                    onPress={() => navigation.navigate('MyModal')}
+                    title="Info"
+                    color="white"
                 />
             ),
             headerBackTitle: 'Home'

@@ -2,11 +2,16 @@ import React from 'react';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import DetailScreen from './screens/DetailScreen';
 import HomeScreen from './screens/HomeScreen';
+import ModalScreen from './screens/ModalScreen';
 
-const RootStack = createStackNavigator(
+const MainStack = createStackNavigator(
     {
-        Home: HomeScreen,
-        Details: DetailScreen,
+        Home: {
+            screen: HomeScreen,
+        },
+        Details: {
+            screen: DetailScreen,
+        },
     },
     {
         initialRouteName: 'Home',
@@ -19,6 +24,22 @@ const RootStack = createStackNavigator(
                 fontWeight: 'bold'
             },
         }
+    }
+);
+
+
+const RootStack = createStackNavigator(
+    {
+        Main: {
+            screen: MainStack,
+        },
+        MyModal: {
+            screen: ModalScreen,
+        },
+    },
+    {
+        mode: 'modal',
+        headerMode: 'none'
     }
 );
 
